@@ -6,6 +6,94 @@
     <title>Happy Birthday!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
+    <style>
+      #balloon-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .balloon {
+        position: absolute;
+        bottom: -100px;
+        width: 50px;
+        height: 70px;
+        background: radial-gradient(circle, #00ff15, #ff6600);
+        border-radius: 50%;
+        animation: floatBalloons 10s infinite linear;
+      }
+      @keyframes floatBalloons {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-120vh);
+          opacity: 0;
+        }
+      }
+    </style>
+    <style>
+      #star-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .star {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: rgb(30, 43, 1);
+        border-radius: 50%;
+        animation: fallStars 3s linear infinite;
+      }
+      @keyframes fallStars {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+    </style>
+    <style>
+      #sprinkle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .sprinkle {
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        background: rgb(2, 0, 8);
+        border-radius: 50%;
+        animation: popSprinkle 1s linear infinite;
+      }
+      @keyframes popSprinkle {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
   <body
     class="bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center min-h-screen text-white"
@@ -78,6 +166,52 @@
       function startConfetti() {
         confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
       }
+    </script>
+    <div id="balloon-container"></div>
+    <div id="star-container"></div>
+    <div id="sprinkle-container"></div>
+
+    <script>
+      function createBalloon() {
+        const balloon = document.createElement("div");
+        balloon.classList.add("balloon");
+        balloon.style.left = `${Math.random() * 100}%`;
+        balloon.style.animationDuration = `${5 + Math.random() * 5}s`;
+        document.getElementById("balloon-container").appendChild(balloon);
+        setTimeout(() => {
+          balloon.remove();
+        }, 10000);
+      }
+      setInterval(createBalloon, 1000);
+    </script>
+    <script>
+      function createStar() {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${2 + Math.random() * 3}s`;
+        document.getElementById("star-container").appendChild(star);
+        setTimeout(() => {
+          star.remove();
+        }, 3000);
+      }
+      setInterval(createStar, 500);
+    </script>
+    <script>
+      function createSprinkle() {
+        const sprinkle = document.createElement("div");
+        sprinkle.classList.add("sprinkle");
+        sprinkle.style.left = `${Math.random() * 100}%`;
+        sprinkle.style.top = `${Math.random() * 100}%`;
+        sprinkle.style.backgroundColor = `hsl(${
+          Math.random() * 360
+        }, 100%, 50%)`;
+        document.getElementById("sprinkle-container").appendChild(sprinkle);
+        setTimeout(() => {
+          sprinkle.remove();
+        }, 1000);
+      }
+      setInterval(createSprinkle, 200);
     </script>
   </body>
 </html>
