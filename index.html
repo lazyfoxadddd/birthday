@@ -193,17 +193,19 @@
     class="bg-gradient-to-r mt-10 mb-10 from-purple-500 to-pink-500 flex items-center justify-center min-h-screen text-white"
   >
     <div class="text-center">
-      <h1 class="text-6xl font-bold animate-bounce ">
+      <h1 class="text-6xl font-bold animate-bounce " contenteditable="true">
         🎉 Happy Birthday, Mohit! 🎂
       </h1>
-      <p class="text-lg mt-4">
+      <p class="text-lg mt-4" contenteditable="true">
         Wishing you a day filled with love, joy, and lots of cake! 🍰
       </p>
 
       <!-- Dropdown for Preloaded Songs -->
+      <label for="songSelect" class="sr-only">Select a Birthday Song</label>
       <select
         id="songSelect"
         class="mt-4 bg-white text-black px-4 py-2 rounded shadow-lg cursor-pointer"
+        aria-label="Select a Birthday Song"
       >
         <option value="">-- Select a Song --</option>
         <option value="song1.mp3">1</option>
@@ -256,6 +258,7 @@
         <img
           id="lightbox-img"
           class="max-w-full max-h-full rounded-lg shadow-lg"
+          title="Lightbox Image"
         />
         <span
           onclick="closeLightbox()"
